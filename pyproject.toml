@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "fun-project"
+version = "0.1.0"
+description = ""
+authors = ["Brian Konzman <bkonzman@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+pydantic = "^2.0.0"
+python = "^3.11"
+pandas = "^1.0.0"
+requests = "^2.31.0"
+pyyaml = ">=6.0.0"
+polars = "^0.19.0"
+jinja2 = "^3.1.0"
+pyarrow = "^14.0.0"
+mypy = "^1.6.1"
+pytest = "^7.4.3"
+pytest-ruff = "^0.1.1"
+ruff = "^0.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.15.0"
+types-jinja2 = "^2.11.0"
+types-ujson = "^5.0.0"
+pyarrow-stubs = "^10.0.0"
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "default"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+fix = true
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["--strict-markers", "--strict-config", "--tb=short", "--color=yes"]
+testpaths = ["tests"]
+pythonpath = ". src"
+
+[tool.mypy]
+files = "*.py"
+python_version = "3.11"
+no_implicit_reexport = true
+#disallow_any_decorated = true
+#disallow_any_explicit = true
+#disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+disable_error_code = ['import-untyped', 'no-untyped-call']
+warn_unused_configs = true
+
+
+[[project.authors]]
+name = "Brian Konzman"
+email = "bkonzman@gmail.com"

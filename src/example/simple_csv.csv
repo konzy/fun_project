@@ -1,0 +1,5 @@
+Order Number,Year,Month,Day,Product Number,Product Name,Count,Extra Col1,Extra Col2
+1,2018,01,01,1,PRODUCT,10,val1,val2
+2,2018,1,01,1,PRODUCT,10,val1,val2
+3,2018,01,1,1,PRODUCT,10,val1,val2
+4,2018,01,01,1,Product 1,10,val1,val2

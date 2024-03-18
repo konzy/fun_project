@@ -1,0 +1,44 @@
+file_config:
+  type: csv
+input_definition:
+  - name: Order Number
+    regex: "^\\d+\\Z$"
+  - name: Year
+    regex: "^\\d{4}\\Z$"
+  - name: Month
+    regex: "^\\d{1,2}\\Z$"
+    type: two_digit_left_padded_string
+  - name: Day
+    regex: "^\\d{1,2}\\Z$"
+    type: two_digit_left_padded_string
+  - name: Product Number
+    regex: "^[A-Z0-9]+\\Z$"
+  - name: Product Name
+    regex: "^[A-Z]+\\Z$"
+  - name: Count
+    regex: "^(\\d+,)*\\d{1,3}(\\.\\d+)?\\Z$"
+output_definition:
+  - input_columns: ["Order Number"]
+    alias: OrderID
+    cast: integer
+  - input_columns: ["Year", "Month", "Day"]
+    alias: OrderDate
+    cast: date_yyyymmdd
+    operation:
+      function: concat
+      args:
+        - Year
+        - Month
+        - Day
+  - input_columns: ["Product Number"]
+    alias: ProductId
+  - input_columns: ["Product Name"]
+    alias: ProductName
+  - input_columns: ["Count"]
+    alias: Quantity
+    cast: decimal
+  - alias: Unit
+    operation:
+      function: default_value
+      args:
+        - kg
