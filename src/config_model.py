@@ -53,5 +53,3 @@ class ConfigModel(BaseModel):
     file_config: FileConfig
     input_definition: List[InputDef]
     output_definition: List[OutputDef]
-
-

@@ -24,4 +24,3 @@ def test_correct_config() -> None:
                               "'val13', 'val14'], ['11', '2018', '01', '01', '7', 'ProductWithLowercase', '20', "
                               "'val13', 'val14'], ['12', '2018', '01', '01', '7', 'PRODUCT_WITH_UNDERSCORES', '20', "
                               "'val13', 'val14']]")
-

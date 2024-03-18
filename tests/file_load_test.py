@@ -18,5 +18,3 @@ def test_load_yaml_file_to_config() -> None:
 def test_load_csv_file() -> None:
     loaded_csv = csv.reader(open(f'{cwd}/test_files/test_csv.csv', 'r'))
     assert loaded_csv is not None
-
-

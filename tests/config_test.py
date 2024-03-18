@@ -205,4 +205,3 @@ output_definition_operation_args_wrong_type["output_definition"][0]["operation"]
 def test_load_yaml_fail_output_definition_wrong_type(yaml_config: Dict[str, Any]) -> None:
     with pytest.raises(ValueError):
         ConfigModel(**yaml_config)
-
