@@ -118,7 +118,12 @@ To run tests for MyPy, Pytest, Ruff and others
 ```bash
 pre-commit
 ```
-`
+
+To get coverage
+```bash
+coverage report -m
+```
+
 If you'd like to contribute, install pre-commit hooks
 ```bash
 pre-commit install
