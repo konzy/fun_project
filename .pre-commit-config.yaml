@@ -43,3 +43,11 @@ repos:
         language: python
         pass_filenames: false
         always_run: true
+  - repo: local
+    hooks:
+      - id: pytest-cov-src-packages
+        name: pytest-cov-src-packages
+        language: python
+        entry: pytest --cov --cov-branch --cov-report term-missing
+        pass_filenames: false
+        always_run: true
