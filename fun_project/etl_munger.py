@@ -6,14 +6,14 @@ from typing import List, Set, Any
 
 from pydantic import Field, field_validator, BaseModel, model_validator
 
-from config_model import ConfigModel  # type: ignore
+from fun_project.config_model import ConfigModel
+from fun_project.operations import run_function
 import yaml
 import re
 from decimal import Decimal
 
 import logging
 
-from operations import run_function  # type: ignore
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -141,13 +141,13 @@ class EtlMunger(BaseModel):
                                    args=output.operation.args,
                                    )
                 if col is None:
-                    logger.info(f"Row {r_id} failed operation validation")
+                    logger.warning(f"Row {r_id}, col {output.alias} failed transformation")
                     return None
             else:
                 col = validated_row[ids[0]]
             cast_column = try_cast_col(col, output.cast)
             if cast_column is None:
-                logger.info(f"Row {r_id} failed type validation")
+                logger.warning(f"Row {r_id}, col {output.alias} failed type casting")
                 return None
             else:
                 transformed_row.append(cast_column)
@@ -165,11 +165,11 @@ class EtlMunger(BaseModel):
                 continue
 
             if regex_list[c_id].match(column) is None:
-                logger.info(f"Row {r_id} column {c_id} failed regex validation, failing early")
+                logger.warning(f"Row {r_id} column {c_id} failed regex validation, first error found, failing early")
                 return None
             cast_column = try_cast_col(column, self.config.input_definition[c_id].type)
             if cast_column is None:
-                logger.info(f"Row {r_id} column {c_id} failed type validation, failing early")
+                logger.warning(f"Row {r_id} column {c_id} failed type validation, first error found, failing early")
                 return None
             validated_row.append(cast_column)
         return validated_row

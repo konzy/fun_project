@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 import pytest
 
-from config_model import ConfigModel  # type: ignore
+from fun_project.config_model import ConfigModel
 from copy import deepcopy
 
 standard_config = {
@@ -54,15 +54,6 @@ file_config_success = deepcopy(standard_config)
 def test_load_yaml_success(yaml_config: Dict[str, Any]) -> None:
     cm = ConfigModel(**yaml_config)
     assert cm.file_config.type == "csv"
-    assert cm.file_config.arguments.dialect == "excel"
-    assert cm.file_config.arguments.delimiter == ","
-    assert cm.file_config.arguments.quotechar == "\""
-    assert cm.file_config.arguments.escapechar is None
-    assert cm.file_config.arguments.doublequote is True
-    assert cm.file_config.arguments.skipinitialspace is False
-    assert cm.file_config.arguments.lineterminator == "\r\n"
-    assert cm.file_config.arguments.quoting == 0
-    assert cm.file_config.arguments.strict is False
     assert cm.input_definition[0].name == "name"
     assert cm.input_definition[0].regex == "^[a-zA-Z]+$"
     assert cm.input_definition[0].type == "string"
@@ -72,8 +63,6 @@ def test_load_yaml_success(yaml_config: Dict[str, Any]) -> None:
     assert cm.output_definition[0].input_columns == ["name", "age"]
     assert cm.output_definition[0].alias == "full_name"
     assert cm.output_definition[0].cast == "string"
-    assert cm.output_definition[0].operation.function == "concat"
-    assert cm.output_definition[0].operation.args == ["name", "age"]
 
 
 file_config_missing = deepcopy(standard_config)

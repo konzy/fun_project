@@ -1,6 +1,6 @@
 import os
 
-from config_model import ConfigModel  # type: ignore
+from fun_project.config_model import ConfigModel
 import yaml
 import csv
 

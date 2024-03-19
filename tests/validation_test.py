@@ -1,6 +1,6 @@
 import os
 
-from etl_munger import EtlMunger  # type: ignore
+from fun_project.etl_munger import EtlMunger
 
 cwd = os.getcwd()
 if 'tests' not in cwd:
